@@ -8,14 +8,14 @@ import ClimateImpact from "@/components/home/ClimateImpact";
 import MarketOpportunity from "@/components/home/MarketOpportunity";
 import RoadmapPreview from "@/components/home/RoadmapPreview";
 import TeamPreview from "@/components/home/TeamPreview";
-import BusinessStatus from "@/components/home/BusinessStatus";
+
 import FinalCTA from "@/components/home/FinalCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <BusinessStatus />
+
       <Problem />
       <TheShift />
       <ProductPipeline />

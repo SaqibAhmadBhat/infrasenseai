@@ -1,117 +1,379 @@
 @import "tailwindcss";
 
+/* ============================================================
+   INFRASENSE AI — DESIGN SYSTEM
+   Dark graphite infrastructure intelligence aesthetic
+   ============================================================ */
+
 :root {
-  /* Colors - Light Theme (default) */
-  --background: #f8fafc; /* Very light slate */
-  --foreground: #0f172a; /* Deep slate / near black */
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  
-  --primary: #0f172a;
-  --primary-foreground: #ffffff;
-  
-  --accent: #0d9488; /* Teal */
-  --accent-foreground: #ffffff;
-  
-  --accent-secondary: #d97706; /* Amber */
-  --accent-secondary-foreground: #ffffff;
+  /* === ALWAYS DARK — InfraSense AI is a dark-first brand === */
+  --background:         #06080f;   /* Near-black with blue-graphite tint */
+  --background-2:       #0a0d18;   /* Slightly lighter layer */
+  --background-3:       #0e1220;   /* Card surfaces */
+
+  --foreground:         #e8edf5;   /* Warm off-white */
+  --foreground-dim:     #c4ccdb;   /* Dimmed foreground */
+
+  --muted:              #111827;   /* Muted backgrounds */
+  --muted-foreground:   #6b7a99;   /* Secondary text */
+
+  --border:             #1c2438;   /* Subtle borders */
+  --border-bright:      #2d3a52;   /* Hover borders */
+
+  --card:               #0a0d18;
+  --card-foreground:    #e8edf5;
+
+  --primary:            #e8edf5;
+  --primary-foreground: #06080f;
+
+  /* === TEAL — Intelligence / Active / Confirmed === */
+  --accent:             #14b8a6;   /* Teal-500 */
+  --accent-dim:         #0f8a7c;   /* Dimmer teal */
+  --accent-glow:        rgba(20, 184, 166, 0.15);
+  --accent-foreground:  #06080f;
+
+  /* === AMBER — Risk / Attention === */
+  --amber:              #f59e0b;
+  --amber-dim:          #d97706;
+  --amber-glow:         rgba(245, 158, 11, 0.15);
+
+  /* === RED — Critical risk === */
+  --danger:             #ef4444;
+  --danger-glow:        rgba(239, 68, 68, 0.15);
+
+  /* === GRID === */
+  --grid-color:         rgba(255,255,255,0.035);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Colors - Dark Theme */
-    --background: #060913; /* Very dark blue-graphite */
-    --foreground: #f8fafc;
-    --muted: #0f172a;
-    --muted-foreground: #94a3b8;
-    --border: #1e293b;
-    
-    --card: #0b1120;
-    --card-foreground: #f8fafc;
-    
-    --primary: #f8fafc;
-    --primary-foreground: #060913;
-    
-    --accent: #14b8a6; /* Teal */
-    --accent-foreground: #060913;
-    
-    --accent-secondary: #f59e0b; /* Amber */
-    --accent-secondary-foreground: #060913;
-  }
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
+/* Tailwind v4 color mapping */
+@theme {
+  --color-background:         var(--background);
+  --color-background-2:       var(--background-2);
+  --color-background-3:       var(--background-3);
+  --color-foreground:         var(--foreground);
+  --color-foreground-dim:     var(--foreground-dim);
+  --color-muted:              var(--muted);
+  --color-muted-foreground:   var(--muted-foreground);
+  --color-border:             var(--border);
+  --color-border-bright:      var(--border-bright);
+  --color-card:               var(--card);
+  --color-card-foreground:    var(--card-foreground);
+  --color-primary:            var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent-secondary: var(--accent-secondary);
-  --color-accent-secondary-foreground: var(--accent-secondary-foreground);
+  --color-accent:             var(--accent);
+  --color-accent-dim:         var(--accent-dim);
+  --color-accent-foreground:  var(--accent-foreground);
+  --color-amber:              var(--amber);
+  --color-amber-dim:          var(--amber-dim);
+  --color-danger:             var(--danger);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+
+  .font-mono-technical {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", monospace;
+    letter-spacing: 0.05em;
   }
+
+  /* Gradient text */
+  .text-gradient-teal {
+    background: linear-gradient(135deg, #14b8a6, #6ee7b7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-white {
+    background: linear-gradient(180deg, #e8edf5 0%, #8896b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Glow effects */
+  .glow-teal   { box-shadow: 0 0 20px var(--accent-glow), 0 0 60px rgba(20,184,166,0.05); }
+  .glow-amber  { box-shadow: 0 0 20px var(--amber-glow); }
+  .glow-danger { box-shadow: 0 0 20px var(--danger-glow); }
+
+  /* Grid background pattern */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-grid-fine {
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /* Noise texture overlay */
+  .bg-noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Card surfaces */
+  .surface-1 { background: var(--background); }
+  .surface-2 { background: var(--background-2); }
+  .surface-3 { background: var(--background-3); }
+
+  /* Border utilities */
+  .border-dim    { border-color: var(--border); }
+  .border-bright { border-color: var(--border-bright); }
+
+  /* Status indicators */
+  .status-online  { color: var(--accent); }
+  .status-warning { color: var(--amber); }
+  .status-danger  { color: var(--danger); }
 }
 
-/* Reduced Motion Preference */
+/* ============================================================
+   COMPONENT PRIMITIVES
+   ============================================================ */
+
+/* TelemetryBadge */
+.telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background: rgba(20, 184, 166, 0.08);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 3px;
+  font-size: 0.625rem;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* StatusPill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.status-pill-prototype {
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  color: var(--accent);
+}
+
+.status-pill-critical {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: var(--danger);
+}
+
+.status-pill-high {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: var(--amber);
+}
+
+.status-pill-low {
+  background: rgba(107, 122, 153, 0.1);
+  border: 1px solid rgba(107, 122, 153, 0.2);
+  color: var(--muted-foreground);
+}
+
+/* DataPanel */
+.data-panel {
+  background: var(--background-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.data-panel-header {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+/* Scanning line (AI detection) */
+@keyframes scan {
+  0%   { top: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Pulsing glow */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--accent-glow); }
+  50%       { box-shadow: 0 0 24px rgba(20,184,166,0.4), 0 0 48px rgba(20,184,166,0.1); }
+}
+
+/* Data packet along SVG path — simulated via transforms */
+@keyframes packet-1 {
+  0%   { transform: translateX(-20px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(120px); opacity: 0; }
+}
+
+@keyframes packet-2 {
+  0%   { transform: translateX(-20px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(120px); opacity: 0; }
+}
+
+/* Slide-up reveal */
+@keyframes slide-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Fade-in */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Route trace draw */
+@keyframes draw-path {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Vehicle move along path */
+@keyframes vehicle-move {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* Blink cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* Data stream left-to-right */
+@keyframes stream {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* Tick indicator */
+@keyframes tick {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* movePath variants for SVG animateMotion */
+@keyframes movePath1 {
+  0%   { transform: translate(0px, 15px);  opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translate(50px, 15px); }
+  90%  { opacity: 1; }
+  100% { transform: translate(100px, 50px); opacity: 0; }
+}
+@keyframes movePath2 {
+  0%   { transform: translate(0px, 50px);  opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate(100px, 50px); opacity: 0; }
+}
+@keyframes movePath3 {
+  0%   { transform: translate(0px, 85px);  opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translate(50px, 85px); }
+  90%  { opacity: 1; }
+  100% { transform: translate(100px, 50px); opacity: 0; }
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+.scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 2px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-@keyframes scan {
-  0% { top: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
-
-@keyframes movePath1 {
-  0% { transform: translate(0px, 15px); opacity: 0; }
-  10% { opacity: 1; }
-  50% { transform: translate(50px, 15px); }
-  90% { opacity: 1; }
-  100% { transform: translate(100px, 50px); opacity: 0; }
-}
-
-@keyframes movePath2 {
-  0% { transform: translate(0px, 50px); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translate(100px, 50px); opacity: 0; }
-}
-
-@keyframes movePath3 {
-  0% { transform: translate(0px, 85px); opacity: 0; }
-  10% { opacity: 1; }
-  50% { transform: translate(50px, 85px); }
-  90% { opacity: 1; }
-  100% { transform: translate(100px, 50px); opacity: 0; }
 }

@@ -13,7 +13,11 @@ export const companyData = {
     mentor: "Prof. G. Sona"
   },
   contact: {
-    email: "contact@infrasenseai.online", // Placeholder
-    website: "https://infrasenseai.online"
+    email: "saqibahmadbhat885@gmail.com",
+    whatsapp: "+917006557535",
+    whatsappDisplay: "+91 70065 57535",
+    linkedin: "https://www.linkedin.com/in/saqibahmadbhat/",
+    website: "https://infrasenseai.online",
+    whatsappMsg: "Hello InfraSense AI, I would like to discuss a potential collaboration."
   }
 };

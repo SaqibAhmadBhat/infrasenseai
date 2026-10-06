@@ -1,56 +1,90 @@
-import { teamData } from "@/content/team";
-import { companyData } from "@/content/company";
+import Link from "next/link";
+
+const TEAM = [
+  {
+    initial: "S",
+    name: "Saqib Ahmad Bhat",
+    role: "Co-Founder",
+    focus: "System architecture, AI pipeline, sensor integration",
+  },
+  {
+    initial: "A",
+    name: "Aqib Majeed",
+    role: "Co-Founder",
+    focus: "Product development, data systems, infrastructure intelligence",
+  },
+];
 
 export default function TeamPreview() {
   return (
-    <section className="py-24 bg-card border-y border-border">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            The Team
-          </h2>
-          <p className="text-muted-foreground">
-            Built by engineers focused on AI, hardware, and scalable platforms.
-          </p>
-        </div>
+    <section className="relative py-28 bg-background overflow-hidden">
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto mb-20">
-          {teamData.map((member) => (
-            <div key={member.name} className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="w-24 h-24 rounded-full bg-muted border border-border flex items-center justify-center mb-6">
-                <span className="text-2xl font-bold text-muted-foreground">
-                  {member.name.split(' ').map(n => n[0]).join('')}
-                </span>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
+        <div className="section-label mb-6">The Builders</div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-6 text-balance">
+              Building something{" "}
+              <span className="text-gradient-teal">infrastructure-grade.</span>
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed max-w-md mb-8">
+              InfraSense AI is being built by engineers who understand that infrastructure intelligence is not a product — it is a discipline. Our work is grounded in real technical constraints, not theoretical capability.
+            </p>
+
+            {/* Institution */}
+            <div className="p-5 rounded-2xl border border-border bg-background-2">
+              <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Institutional Foundation</div>
+              <div className="text-sm font-semibold text-foreground mb-1">
+                Government College of Engineering, Tirunelveli
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-1">{member.name}</h3>
-              <p className="text-accent font-semibold tracking-wider text-sm uppercase mb-3">{member.role}</p>
-              <p className="text-muted-foreground text-sm font-medium mb-4">{member.education}</p>
-              
-              <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                {member.focus.map((skill) => (
-                  <span key={skill} className="px-2 py-1 bg-background border border-border rounded text-xs font-mono text-foreground/80">
-                    {skill}
-                  </span>
-                ))}
+              <div className="text-xs text-muted-foreground mb-3">
+                Faculty Mentor: Prof. G. Sona
+              </div>
+              <div className="status-pill status-pill-prototype text-[9px] w-fit">
+                Working Prototype · Academic Origin
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Founder cards */}
+          <div className="flex flex-col gap-4">
+            {TEAM.map(person => (
+              <div key={person.name} className="group p-6 rounded-2xl border border-border bg-background-2 hover:border-border-bright transition-all">
+                <div className="flex items-start gap-5">
+                  {/* Monogram portrait */}
+                  <div className="w-14 h-14 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:border-accent/40 transition-colors">
+                    <span className="text-2xl font-bold text-accent font-mono">{person.initial}</span>
+                  </div>
+                  <div>
+                    <div className="font-bold text-base text-foreground">{person.name}</div>
+                    <div className="text-xs text-accent font-semibold mb-2">{person.role}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed">{person.focus}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Udyam */}
+            <div className="p-4 rounded-xl border border-border bg-background-3/60">
+              <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Legal Entity</div>
+              <div className="text-xs text-foreground-dim font-mono">UDYAM-JK-04-0054839</div>
+              <div className="text-[10px] text-muted-foreground">Micro Enterprise · 2026–27 · Registered</div>
+            </div>
+          </div>
         </div>
 
-        <div className="max-w-2xl mx-auto bg-background rounded-2xl border border-border p-8 text-center">
-          <p className="text-sm font-bold tracking-widest text-muted-foreground uppercase mb-4">
-            Built within an engineering and incubation ecosystem.
-          </p>
-          <h4 className="text-xl font-semibold text-foreground mb-2">
-            {companyData.institution.name}
-          </h4>
-          <p className="text-muted-foreground text-sm mb-6">
-            Faculty Mentor: {companyData.institution.mentor}
-          </p>
-          <div className="inline-flex gap-4 text-xs font-mono text-muted-foreground">
-            <span>College Incubation: {companyData.institution.incubation}</span>
-            <span>Ref: {companyData.institution.incubationNumber}</span>
-          </div>
+        <div className="mt-12 text-center">
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+          >
+            Read the full team story
+            <svg viewBox="0 0 16 16" className="w-4 h-4" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
